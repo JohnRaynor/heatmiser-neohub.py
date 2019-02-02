@@ -20,12 +20,14 @@ def main():
         sys.exit(1)
     loop = asyncio.get_event_loop()
     neo = NeoHub(host, 4242)
-    print (await neo.neoplugs())[args[0]].switch_on()
-    print (neo.neoplugs())
-    for name in neo.neoplugs():
-        ns = neo.neoplugs()[name]
-        print(repr(ns))
-    return 0
+
+    cmd = "switch_on"
+
+    args = 'Greenhouse'
+    #retval = loop.run_until_complete(main(neo, cmd, args))
+    retval = loop.run_until_complete(main(neo, cmd, args))
+    loop.close()
+    sys.exit(retval)
  
 
 

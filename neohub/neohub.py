@@ -367,9 +367,13 @@ class NeoHub(object):
 
             # device type 1 = neostat
             #             6 = neoplug
+            print ('merged["DEVICE_TYPE"] = ' + str(merged["DEVICE_TYPE"]))
             if merged["DEVICE_TYPE"] == 0:
                 # offline therm?
                 pass
+            elif merged["DEVICE_TYPE"] == 12:
+                if name not in self._neostats:
+                    self._neostats[name] = NeoStat(self, name)
             elif merged["DEVICE_TYPE"] == 1:
                 if name not in self._neostats:
                     self._neostats[name] = NeoStat(self, name)
