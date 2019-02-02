@@ -94,6 +94,7 @@ async def main(neo, cmd, args):
 
 
 if __name__ == '__main__':
+    os.environ.setdefault("NEOHUB_IP","192.168.5.162")
     host = os.environ.get("NEOHUB_IP")
     if host is None:
         print("Please set the NEOHUB_IP environment variable")

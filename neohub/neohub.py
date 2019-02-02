@@ -335,6 +335,7 @@ class NeoHub(object):
 
     async def switch_plug_off(self, device):
         q = {"TIMER_OFF": device}
+        print ("got to here with " + device)
         return await self.call(q, expecting={"result": "timers off"})
 
     # Guard / memoize / debounce access to actual_update()
@@ -378,7 +379,7 @@ class NeoHub(object):
             else:
                 logging.warn("Unimplemented NeoSomething device_type(%s)! "
                              "Only support neostat(1) and neoplug(6) at the mo" % (merged["DEVICE_TYPE"]))
-                print(repr(merged))
+                #print(repr(merged))
                 pass
 
         self._update_in_progress = False
