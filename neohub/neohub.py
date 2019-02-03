@@ -331,11 +331,12 @@ class NeoHub(object):
     # or array of valid devices"}
     async def switch_plug_on(self, device):
         q = {"TIMER_ON": device}
+        print ("Switching on " + device)
         return await self.call(q, expecting={"result": "time clock overide on"})
 
     async def switch_plug_off(self, device):
         q = {"TIMER_OFF": device}
-        print ("got to here with " + device)
+        print ("Switching off " + device)
         return await self.call(q, expecting={"result": "timers off"})
 
     # Guard / memoize / debounce access to actual_update()
@@ -367,7 +368,7 @@ class NeoHub(object):
 
             # device type 1 = neostat
             #             6 = neoplug
-            print ('merged["DEVICE_TYPE"] = ' + str(merged["DEVICE_TYPE"]))
+            #print ('merged["DEVICE_TYPE"] = ' + str(merged["DEVICE_TYPE"]))
             if merged["DEVICE_TYPE"] == 0:
                 # offline therm?
                 pass
@@ -383,8 +384,9 @@ class NeoHub(object):
             else:
                 logging.warn("Unimplemented NeoSomething device_type(%s)! "
                              "Only support neostat(1) and neoplug(6) at the mo" % (merged["DEVICE_TYPE"]))
-                #print(repr(merged))
+                print(repr(merged))
                 pass
+            #print(repr(merged))
 
         self._update_in_progress = False
         return self.devices
